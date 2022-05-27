@@ -1,1 +1,1 @@
-# wallet-uwu
+# Wallet-uWu
