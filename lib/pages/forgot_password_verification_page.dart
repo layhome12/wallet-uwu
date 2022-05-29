@@ -104,7 +104,7 @@ class _ForgotPasswordVerificationPageState
                                         showDialog(
                                           context: context,
                                           builder: (BuildContext context) {
-                                            return ThemeHelper().alartDialog(
+                                            return ThemeHelper().alertDialog(
                                                 "Successful",
                                                 "Verification code resend successful.",
                                                 context);
