@@ -58,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
                                       'User Name', 'Enter your user name'),
                                 ),
                                 decoration:
-                                    ThemeHelper().inputBoxDecorationShaddow(),
+                                    ThemeHelper().inputBoxDecorationShadow(),
                               ),
                               SizedBox(height: 30.0),
                               Container(
@@ -68,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                                       'Password', 'Enter your password'),
                                 ),
                                 decoration:
-                                    ThemeHelper().inputBoxDecorationShaddow(),
+                                    ThemeHelper().inputBoxDecorationShadow(),
                               ),
                               SizedBox(height: 15.0),
                               Container(

@@ -3,7 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:wallet_uwu/common/theme_helper.dart';
 
-import 'forgot_password_verification_page.dart';
+import 'verification_page.dart';
 import 'login_page.dart';
 import '/widgets/header_widget.dart';
 
@@ -97,7 +97,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                 },
                               ),
                               decoration:
-                                  ThemeHelper().inputBoxDecorationShaddow(),
+                                  ThemeHelper().inputBoxDecorationShadow(),
                             ),
                             SizedBox(height: 40.0),
                             Container(
@@ -118,14 +118,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                   ),
                                 ),
                                 onPressed: () {
-                                  if (_formKey.currentState!.validate()) {
-                                    Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              ForgotPasswordVerificationPage()),
-                                    );
-                                  }
+
                                 },
                               ),
                             ),

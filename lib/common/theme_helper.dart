@@ -1,24 +1,33 @@
-
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-class ThemeHelper{
-
-  InputDecoration textInputDecoration([String lableText="", String hintText = ""]){
+class ThemeHelper {
+  InputDecoration textInputDecoration(
+      [String lableText = "", String hintText = ""]) {
     return InputDecoration(
       labelText: lableText,
+      labelStyle: TextStyle(color: Colors.grey.shade600, fontFamily: "Poppins"),
       hintText: hintText,
+      hintStyle: TextStyle(color: Colors.grey.shade600, fontFamily: "Poppins"),
       fillColor: Colors.white,
       filled: true,
-      contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-      focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(100.0), borderSide: BorderSide(color: Colors.grey)),
-      enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(100.0), borderSide: BorderSide(color: Colors.grey.shade400)),
-      errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(100.0), borderSide: BorderSide(color: Colors.red, width: 2.0)),
-      focusedErrorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(100.0), borderSide: BorderSide(color: Colors.red, width: 2.0)),
+      contentPadding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+      focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(100.0),
+          borderSide: BorderSide(color: Colors.purple.shade500)),
+      enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(100.0),
+          borderSide: BorderSide(color: Colors.grey.shade400)),
+      errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(100.0),
+          borderSide: BorderSide(color: Colors.red.shade300, width: 1.0)),
+      focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(100.0),
+          borderSide: BorderSide(color: Colors.red.shade300, width: 1.0)),
     );
   }
 
-  BoxDecoration inputBoxDecorationShaddow() {
+  BoxDecoration inputBoxDecorationShadow() {
     return BoxDecoration(boxShadow: [
       BoxShadow(
         color: Colors.black.withOpacity(0.1),
@@ -28,7 +37,8 @@ class ThemeHelper{
     ]);
   }
 
-  BoxDecoration buttonBoxDecoration(BuildContext context, [String color1 = "", String color2 = ""]) {
+  BoxDecoration buttonBoxDecoration(BuildContext context,
+      [String color1 = "", String color2 = ""]) {
     Color c1 = Theme.of(context).primaryColor;
     Color c2 = Theme.of(context).accentColor;
     if (color1.isEmpty == false) {
@@ -39,13 +49,13 @@ class ThemeHelper{
     }
 
     return BoxDecoration(
-      boxShadow: [
+      boxShadow: const [
         BoxShadow(color: Colors.black26, offset: Offset(0, 4), blurRadius: 5.0)
       ],
       gradient: LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
-        stops: [0.0, 1.0],
+        stops: const [0.0, 1.0],
         colors: [
           c1,
           c2,
@@ -63,19 +73,19 @@ class ThemeHelper{
           borderRadius: BorderRadius.circular(30.0),
         ),
       ),
-      minimumSize: MaterialStateProperty.all(Size(50, 50)),
+      minimumSize: MaterialStateProperty.all(Size(60, 55)),
       backgroundColor: MaterialStateProperty.all(Colors.transparent),
       shadowColor: MaterialStateProperty.all(Colors.transparent),
     );
   }
 
-  AlertDialog alartDialog(String title, String content, BuildContext context) {
+  AlertDialog alertDialog(String title, String content, BuildContext context) {
     return AlertDialog(
       title: Text(title),
       content: Text(content),
       actions: [
         TextButton(
-          child: Text(
+          child: const Text(
             "OK",
             style: TextStyle(color: Colors.white),
           ),
@@ -88,9 +98,4 @@ class ThemeHelper{
       ],
     );
   }
-
-}
-
-class LoginFormStyle{
-
 }

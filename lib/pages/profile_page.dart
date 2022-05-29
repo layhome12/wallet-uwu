@@ -6,7 +6,7 @@ import 'package:wallet_uwu/pages/splash_screen.dart';
 import 'package:wallet_uwu/widgets/header_widget.dart';
 
 import 'forgot_password_page.dart';
-import 'forgot_password_verification_page.dart';
+import 'verification_page.dart';
 import 'registration_page.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -216,11 +216,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       color: Theme.of(context).accentColor),
                 ),
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ForgotPasswordVerificationPage()),
-                  );
+
                 },
               ),
               Divider(
