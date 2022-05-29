@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
+import 'package:wallet_uwu/api/register_api.dart';
 import 'package:wallet_uwu/models/register.dart';
 import '/widgets/header_widget.dart';
 
@@ -90,7 +93,8 @@ class _VerificationPageState extends State<VerificationPage> {
                                         setState(() {
                                           _isLoading = true;
                                         });
-                                        // formSubmitted(widget.register.verifyToken);
+                                        formSubmitted(
+                                            widget.register.verifyToken);
                                       },
                                       onChanged: (pin) {},
                                     ),
@@ -134,7 +138,15 @@ class _VerificationPageState extends State<VerificationPage> {
     );
   }
 
-  void formSubmitted(String? verifyToken) {
-    // print(verifyToken.toString());
+  void formSubmitted(String? verifyToken) async {
+    Timer(const Duration(milliseconds: 3000), () {
+      setState(() {
+        _isLoading =
+            false; // Now it is showing fade effect and navigating to Login page
+      });
+    });
+    await RegisterApi()
+        .verifikasiAkun(verifyToken!)
+        .then((value) => print(value.message));
   }
 }
