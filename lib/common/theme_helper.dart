@@ -9,6 +9,7 @@ class ThemeHelper {
       labelStyle: TextStyle(color: Colors.grey.shade600, fontFamily: "Poppins"),
       hintText: hintText,
       hintStyle: TextStyle(color: Colors.grey.shade600, fontFamily: "Poppins"),
+      errorStyle: const TextStyle(fontFamily: "Poppins", fontSize: 11),
       fillColor: Colors.white,
       filled: true,
       contentPadding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
@@ -73,7 +74,7 @@ class ThemeHelper {
           borderRadius: BorderRadius.circular(30.0),
         ),
       ),
-      minimumSize: MaterialStateProperty.all(Size(60, 55)),
+      minimumSize: MaterialStateProperty.all(Size(55, 50)),
       backgroundColor: MaterialStateProperty.all(Colors.transparent),
       shadowColor: MaterialStateProperty.all(Colors.transparent),
     );

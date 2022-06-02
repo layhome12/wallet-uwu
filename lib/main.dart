@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:provider/provider.dart';
+import 'package:wallet_uwu/pages/login_page.dart';
+import 'package:wallet_uwu/pages/providertest.dart';
+import 'package:wallet_uwu/pages/registration_page.dart';
+import 'package:wallet_uwu/pages/verification_page.dart';
+import 'package:wallet_uwu/provider/refresh_token.dart';
 
 import 'pages/splash_screen.dart';
 
@@ -8,7 +14,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-
   final Color _primaryColor = HexColor('#DC54FE');
   final Color _accentColor = HexColor('#8A02AE');
 
@@ -29,17 +34,25 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Login UI',
-      theme: ThemeData(
-        primaryColor: _primaryColor,
-        accentColor: _accentColor,
-        scaffoldBackgroundColor: Colors.grey.shade100,
-        primarySwatch: Colors.grey,
+    return ChangeNotifierProvider(
+      create: (context) => RefreshTokenProvider(),
+      child: MaterialApp(
+        title: 'Flutter Login UI',
+        theme: ThemeData(
+          primaryColor: _primaryColor,
+          accentColor: _accentColor,
+          scaffoldBackgroundColor: Colors.grey.shade100,
+          primarySwatch: Colors.grey,
+        ),
+        home: SplashScreen(title: 'Flutter Login UI'),
+        initialRoute: '/',
+        routes: {
+          '/login': (context) => const LoginPage(),
+          '/register': (context) => const RegistrationPage(),
+          '/verify_otp': (context) => const VerificationPage(),
+          '/provider': (context) => ProviderTest(),
+        },
       ),
-      home: SplashScreen(title: 'Flutter Login UI'),
     );
   }
 }
-
-

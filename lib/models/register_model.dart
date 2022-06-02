@@ -1,11 +1,11 @@
-class Register {
-  Register({required this.statusCode, required this.message, this.verifyToken});
+class RegisterModel {
+  RegisterModel({required this.statusCode, required this.message, this.verifyToken});
 
   int statusCode;
   String message;
   String? verifyToken;
 
-  factory Register.fromJson(Map<String, dynamic> json) => Register(
+  factory RegisterModel.fromJson(Map<String, dynamic> json) => RegisterModel(
       statusCode: json["statusCode"],
       message: json["message"],
       verifyToken: json.containsKey("verifyToken") ? json["verifyToken"] : '');

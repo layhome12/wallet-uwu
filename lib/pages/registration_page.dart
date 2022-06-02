@@ -64,7 +64,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
       child: TextFormField(
         controller: email,
         style: const TextStyle(fontFamily: "Poppins"),
-        decoration: ThemeHelper().textInputDecoration("E-mail address"),
+        decoration: ThemeHelper().textInputDecoration("E-mail"),
         keyboardType: TextInputType.emailAddress,
         validator: (val) => uValidator(value: val, isEmail: true),
       ),
@@ -273,16 +273,12 @@ class _RegistrationPageState extends State<RegistrationPage> {
             .registerSave(firstName.text, lasName.text, username.text,
                 email.text, phoneNumber.text, password.text)
             .then((value) => {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => VerificationPage(
-                                register: value,
-                              )))
+                  Navigator.of(context)
+                      .pushReplacementNamed('/verify_otp', arguments: value.verifyToken)
                 });
       } catch (err) {
         Fluttertoast.showToast(
-            msg: 'Tidak dapat terhubung, Periksa otak anda',
+            msg: 'Tidak bisa terhubung',
             toastLength: Toast.LENGTH_LONG,
             backgroundColor: Colors.black54);
       }
