@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:wallet_uwu/pages/login_page.dart';
+import 'package:wallet_uwu/pages/login/login_page.dart';
 import 'package:wallet_uwu/pages/splash_screen.dart';
-import 'package:wallet_uwu/widgets/header_widget.dart';
+import 'package:wallet_uwu/widgets/header_primary_widget.dart';
 
-import 'forgot_password_page.dart';
-import 'verification_page.dart';
-import 'registration_page.dart';
+import 'forgot_password/forgot_password_page.dart';
+import 'register/verification_page.dart';
+import 'register/registration_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -248,7 +248,7 @@ class _ProfilePageState extends State<ProfilePage> {
           children: [
             Container(
               height: 100,
-              child: HeaderWidget(100, false, Icons.house_rounded),
+              child: HeaderPrimaryWidget(100, false, Icons.house_rounded),
             ),
             Container(
               alignment: Alignment.center,

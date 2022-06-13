@@ -1,10 +1,9 @@
 class AuthModel {
   int statusCode;
   String message;
-  String? tokenAccess;
+  String tokenAccess;
 
-  AuthModel(
-      {required this.statusCode, required this.message, this.tokenAccess});
+  AuthModel({required this.statusCode, required this.message, required this.tokenAccess});
 
   factory AuthModel.fromJson(Map<String, dynamic> json) => AuthModel(
         statusCode: json["statusCode"],
@@ -12,10 +11,4 @@ class AuthModel {
         tokenAccess:
             json.containsKey("token_access") ? json["token_access"] : '',
       );
-
-  Map<String, dynamic> toJson() => {
-        "statusCode": statusCode,
-        "message": message,
-        "tokenAccess": tokenAccess
-      };
 }
