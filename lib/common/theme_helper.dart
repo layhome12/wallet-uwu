@@ -28,6 +28,31 @@ class ThemeHelper {
     );
   }
 
+  InputDecoration textInputDecorationIcon(
+      [String labelText = "",
+      String hintText = "",
+      IconData icon = Icons.add]) {
+    return InputDecoration(
+      labelText: labelText,
+      hintText: hintText,
+      suffixIcon: Icon(icon,color: Colors.deepPurple.shade400),
+      labelStyle: TextStyle(color: Colors.grey.shade600, fontFamily: "Poppins"),
+      hintStyle: TextStyle(color: Colors.grey.shade600, fontFamily: "Poppins"),
+      errorStyle: const TextStyle(fontFamily: "Poppins", fontSize: 11),
+      fillColor: Colors.white,
+      filled: true,
+      contentPadding: const EdgeInsets.fromLTRB(0, 5, 15, 5),
+      focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.grey.shade400)),
+      enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.grey.shade400)),
+      errorBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.grey.shade400)),
+      focusedErrorBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.grey.shade400)),
+    );
+  }
+
   BoxDecoration inputBoxDecorationShadow() {
     return BoxDecoration(boxShadow: [
       BoxShadow(

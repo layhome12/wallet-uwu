@@ -10,6 +10,9 @@ import 'package:wallet_uwu/pages/login/login_page.dart';
 import 'package:wallet_uwu/pages/providertest.dart';
 import 'package:wallet_uwu/pages/register/registration_page.dart';
 import 'package:wallet_uwu/pages/register/verification_page.dart';
+import 'package:wallet_uwu/pages/wallet/qrcode_page.dart';
+import 'package:wallet_uwu/pages/wallet/success_page.dart';
+import 'package:wallet_uwu/pages/wallet/transfer_page.dart';
 import 'package:wallet_uwu/provider/access_token.dart';
 
 import 'pages/splash_screen.dart';
@@ -51,7 +54,7 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.grey.shade100,
           primarySwatch: Colors.grey,
         ),
-        home: SplashScreen(title: 'Kantongku'),
+        home: const SplashScreen(title: 'Kantongku'),
         initialRoute: '/',
         routes: {
           '/login': (context) => const LoginPage(),
@@ -62,7 +65,10 @@ class MyApp extends StatelessWidget {
           '/reset_password': (context) => const ResetPasswordPage(),
           '/main_layout': (context) => const MainLayout(),
 
-          // ==> Main Route
+          // ==> Route Wallet
+          '/transfer': (context) => const TransferPage(),
+          '/qr_code': (context) => QRCodePage(),
+          '/success_transfer': (context) => const SuccessPage(),
 
           // ==> Route Dummy
           '/provider': (context) => ProviderTest(),

@@ -11,6 +11,7 @@ import 'package:wallet_uwu/api/dashboard_api.dart';
 import 'package:wallet_uwu/models/carousel_model.dart';
 import 'package:wallet_uwu/widgets/header_secondary_widget.dart';
 
+import '../../models/berita_model.dart';
 import '../../provider/access_token.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -22,12 +23,16 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   List<CarouselModel> _listItemCarousel = [];
+  List<BeritaModel> _listBerita = [];
   int carouselIndex = 0;
+  String ammount = "0";
 
   @override
   void initState() {
-    super.initState();
     getDataBanner();
+    getDataBerita();
+    getDataAmmount();
+    super.initState();
   }
 
   Widget cardHeaderNavigation() {
@@ -69,7 +74,7 @@ class _DashboardPageState extends State<DashboardPage> {
             ),
             GestureDetector(
               onTap: () {
-                print("Transfer");
+                Navigator.of(context).pushNamed('/transfer');
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -151,8 +156,8 @@ class _DashboardPageState extends State<DashboardPage> {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
-            children: const [
-              Text(
+            children: [
+              const Text(
                 "Rp. ",
                 style: TextStyle(
                   color: Colors.white,
@@ -162,7 +167,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 ),
               ),
               Text(
-                "45.000",
+                ammount,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 46,
@@ -225,7 +230,7 @@ class _DashboardPageState extends State<DashboardPage> {
             items: _listItemCarousel.map((i) {
               return Container(
                 width: double.infinity,
-                margin: EdgeInsets.symmetric(vertical: 10),
+                margin: const EdgeInsets.symmetric(vertical: 10),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(15),
@@ -259,8 +264,8 @@ class _DashboardPageState extends State<DashboardPage> {
     return Column(
       children: [
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 28),
-          margin: EdgeInsets.only(bottom: 3),
+          padding: const EdgeInsets.symmetric(horizontal: 28),
+          margin: const EdgeInsets.only(bottom: 3),
           width: double.infinity,
           child: Text(
             "Yang Menarik",
@@ -273,8 +278,8 @@ class _DashboardPageState extends State<DashboardPage> {
           ),
         ),
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 28),
-          margin: EdgeInsets.only(bottom: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 28),
+          margin: const EdgeInsets.only(bottom: 15),
           width: double.infinity,
           child: const Text(
             "Ayo kenali lebih dekat dekat Kantongku",
@@ -285,70 +290,66 @@ class _DashboardPageState extends State<DashboardPage> {
           width: double.infinity,
           alignment: Alignment.center,
           child: Wrap(
-            // alignment: WrapAlignment.center,
             crossAxisAlignment: WrapCrossAlignment.center,
-            children: [
-              Container(
-                margin: EdgeInsets.all(10),
-                width: 175,
-                height: 240,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(13),
-                  boxShadow: const [
-                    BoxShadow(
-                      blurRadius: 10,
-                      color: Colors.black12
-                    )
-                  ]
+            children: _listBerita
+                .map(
+                  (e) => Container(
+                    margin: const EdgeInsets.all(10),
+                    width: 175,
+                    height: 240,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(13),
+                      boxShadow: const [
+                        BoxShadow(blurRadius: 10, color: Colors.black12)
+                      ],
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: double.infinity,
+                          height: 150,
+                          decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(13),
+                                  topRight: Radius.circular(13)),
+                              image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage(e.beritaImg))),
+                        ),
+                        Container(
+                          width: double.infinity,
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                e.beritaNama,
+                                style: const TextStyle(
+                                  fontFamily: "ReggaeOne",
+                                  color: Colors.deepPurple,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 4),
+                                child: Text(
+                                  e.beritaIsi.substring(0, 45),
+                                  style: const TextStyle(
+                                      fontFamily: "Poppins", fontSize: 12),
+                                ),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                 )
-              ),
-              Container(
-                  margin: EdgeInsets.all(10),
-                  width: 175,
-                  height: 240,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(13),
-                      boxShadow: const [
-                        BoxShadow(
-                            blurRadius: 10,
-                            color: Colors.black12
-                        )
-                      ]
-                  )
-              ),
-              Container(
-                  margin: EdgeInsets.all(10),
-                  width: 175,
-                  height: 240,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(13),
-                      boxShadow: const [
-                        BoxShadow(
-                            blurRadius: 10,
-                            color: Colors.black12
-                        )
-                      ]
-                  )
-              ),
-              Container(
-                  margin: EdgeInsets.all(10),
-                  width: 175,
-                  height: 240,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(13),
-                      boxShadow: const [
-                        BoxShadow(
-                            blurRadius: 10,
-                            color: Colors.black12
-                        )
-                      ]
-                  )
-              ),
-            ],
+                .toList(),
           ),
         )
       ],
@@ -415,6 +416,46 @@ class _DashboardPageState extends State<DashboardPage> {
     } catch (err) {
       Fluttertoast.showToast(
           msg: "Tidak Bisa Terhubung Server", backgroundColor: Colors.black87);
+    }
+  }
+
+  Future getDataBerita() async {
+    final provider = Provider.of<AccessTokenProvider>(context, listen: false);
+    try {
+      final response =
+          await DashboardApi().getBerita(provider.tokenAuth.tokenAccess);
+
+      if (response.statusCode != 200) {
+        provider.updateToken();
+        getDataBerita();
+      }
+
+      setState(() {
+        _listBerita = response.listData;
+      });
+    } catch (err) {
+      Fluttertoast.showToast(
+          msg: "Tidak Bisa Terkoneksi Server", backgroundColor: Colors.black87);
+    }
+  }
+
+  Future getDataAmmount() async {
+    final provider = Provider.of<AccessTokenProvider>(context, listen: false);
+    try {
+      final response =
+          await DashboardApi().getAmmount(provider.tokenAuth.tokenAccess);
+
+      if (response.statusCode != 200) {
+        provider.updateToken();
+        getDataAmmount();
+      }
+
+      setState(() {
+        ammount = response.walletAmmount;
+      });
+    } catch (err) {
+      Fluttertoast.showToast(
+          msg: "Tidak Bisa Terkoneksi Server", backgroundColor: Colors.black87);
     }
   }
 

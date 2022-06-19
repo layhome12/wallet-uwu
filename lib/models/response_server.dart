@@ -41,3 +41,20 @@ class VerifyPasswordResponse {
         pwdReset: json.containsKey("pwdReset") ? json["pwdReset"] : "",
       );
 }
+
+class WalletAmmountResponse {
+  int statusCode;
+  String message;
+  String? walletAmmount;
+
+  WalletAmmountResponse(
+      {required this.statusCode, required this.message, this.walletAmmount});
+
+  factory WalletAmmountResponse.fromJson(Map<String, dynamic> json) =>
+      WalletAmmountResponse(
+        statusCode: json["statusCode"],
+        message: json["message"],
+        walletAmmount:
+            json.containsKey("walletAmmount") ? json["walletAmmount"] : "",
+      );
+}
