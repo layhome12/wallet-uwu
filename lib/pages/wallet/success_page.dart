@@ -1,5 +1,6 @@
+import 'dart:convert';
+
 import 'package:dotted_line/dotted_line.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ticket_widget/ticket_widget.dart';
 
@@ -13,16 +14,20 @@ class SuccessPage extends StatefulWidget {
 class _SuccessPageState extends State<SuccessPage> {
   @override
   Widget build(BuildContext context) {
+    final dataResponse = ModalRoute.of(context)?.settings.arguments;
+    Map<String, dynamic> value = json.decode(dataResponse.toString());
+
     return Scaffold(
       backgroundColor: Colors.grey.shade300,
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Rincian Transfer",
           style: TextStyle(color: Colors.white, fontFamily: "Poppins"),
         ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.of(context)
+              .pushNamedAndRemoveUntil('/main_layout', (route) => false),
         ),
         backgroundColor: Colors.deepPurple,
         shadowColor: Colors.transparent,
@@ -33,7 +38,7 @@ class _SuccessPageState extends State<SuccessPage> {
             Container(
               height: 160,
               width: double.infinity,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.deepPurple,
               ),
             ),
@@ -44,11 +49,11 @@ class _SuccessPageState extends State<SuccessPage> {
                 padding: const EdgeInsets.only(top: 60, left: 35, right: 35),
                 child: TicketWidget(
                   width: 350,
-                  height: 555,
+                  height: 560,
                   isCornerRounded: true,
-                  padding: EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(20),
                   child: Padding(
-                    padding: EdgeInsets.only(top: 65),
+                    padding: const EdgeInsets.only(top: 65),
                     child: Column(
                       children: [
                         Text(
@@ -74,7 +79,8 @@ class _SuccessPageState extends State<SuccessPage> {
                                 ),
                               ),
                               Text(
-                                "50.000",
+                                value["transfer"]["transaksi_ammount"]
+                                    .toString(),
                                 style: TextStyle(
                                   fontFamily: "Digital7",
                                   fontSize: 60,
@@ -94,14 +100,16 @@ class _SuccessPageState extends State<SuccessPage> {
                               horizontal: 5, vertical: 8),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
-                              Text(
+                            children: [
+                              const Text(
                                 "Transfer Ke",
                                 style: TextStyle(fontFamily: "Poppins"),
                               ),
                               Text(
-                                "Uhuy",
-                                style: TextStyle(fontFamily: "Poppins"),
+                                value["tujuan"]["user_nama"],
+                                style: const TextStyle(
+                                  fontFamily: "Poppins",
+                                ),
                               )
                             ],
                           ),
@@ -132,14 +140,14 @@ class _SuccessPageState extends State<SuccessPage> {
                               horizontal: 5, vertical: 8),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
-                              Text(
+                            children: [
+                              const Text(
                                 "No. Transaksi",
                                 style: TextStyle(fontFamily: "Poppins"),
                               ),
                               Text(
-                                "KT2206190020",
-                                style: TextStyle(fontFamily: "Poppins"),
+                                value["transfer"]["transaksi_code"].toString(),
+                                style: const TextStyle(fontFamily: "Poppins"),
                               )
                             ],
                           ),
@@ -153,14 +161,17 @@ class _SuccessPageState extends State<SuccessPage> {
                               horizontal: 5, vertical: 8),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
-                              Text(
+                            children: [
+                              const Text(
                                 "Waktu Selesai",
                                 style: TextStyle(fontFamily: "Poppins"),
                               ),
                               Text(
-                                "19 Mei 2022",
-                                style: TextStyle(fontFamily: "Poppins"),
+                                value["transfer"]["created_at"]
+                                    .toString()
+                                    .replaceAll(".000Z", "")
+                                    .replaceAll("T", " "),
+                                style: const TextStyle(fontFamily: "Poppins"),
                               )
                             ],
                           ),

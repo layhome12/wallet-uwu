@@ -6,7 +6,7 @@ import 'package:wallet_uwu/models/carousel_model.dart';
 import 'package:wallet_uwu/models/response_server.dart';
 
 class DashboardApi {
-  final baseUrl = 'http://192.168.0.2:8081/api/';
+  final baseUrl = 'http://192.168.2.4:8081/api/';
 
   Future getBanner(String? bearer) async {
     final response = await http.get(Uri.parse(baseUrl + 'dashboard/get_banner'),

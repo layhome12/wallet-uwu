@@ -165,7 +165,7 @@ class _WalletPageState extends State<WalletPage> {
           ),
         ),
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey.shade100,
       body: SafeArea(
         child: Center(
           child: Column(

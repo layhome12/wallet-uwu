@@ -1,14 +1,13 @@
 import 'package:carousel_indicator/carousel_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:wallet_uwu/api/dashboard_api.dart';
 import 'package:wallet_uwu/models/carousel_model.dart';
+import 'package:wallet_uwu/provider/wallet_ammount.dart';
 import 'package:wallet_uwu/widgets/header_secondary_widget.dart';
 
 import '../../models/berita_model.dart';
@@ -52,7 +51,7 @@ class _DashboardPageState extends State<DashboardPage> {
           children: [
             GestureDetector(
               onTap: () {
-                print("Topup");
+                Navigator.of(context).pushNamed('/topup_local');
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -282,7 +281,7 @@ class _DashboardPageState extends State<DashboardPage> {
           margin: const EdgeInsets.only(bottom: 15),
           width: double.infinity,
           child: const Text(
-            "Ayo kenali lebih dekat dekat Kantongku",
+            "Ayo kenali lebih dekat dengan Kantongku",
             style: TextStyle(fontFamily: "Poppins", fontSize: 13),
           ),
         ),
@@ -388,13 +387,6 @@ class _DashboardPageState extends State<DashboardPage> {
           ),
           bannerContent(),
           listBerita(),
-          Center(
-            child: ElevatedButton(
-                onPressed: () {
-                  logout();
-                },
-                child: Text("Logout")),
-          ),
         ],
       ),
     );
@@ -441,6 +433,7 @@ class _DashboardPageState extends State<DashboardPage> {
 
   Future getDataAmmount() async {
     final provider = Provider.of<AccessTokenProvider>(context, listen: false);
+    final wallet = Provider.of<WalletAmmountProvider>(context, listen: false);
     try {
       final response =
           await DashboardApi().getAmmount(provider.tokenAuth.tokenAccess);
@@ -452,17 +445,11 @@ class _DashboardPageState extends State<DashboardPage> {
 
       setState(() {
         ammount = response.walletAmmount;
+        wallet.changeSaldo(response.walletAmmount);
       });
     } catch (err) {
       Fluttertoast.showToast(
           msg: "Tidak Bisa Terkoneksi Server", backgroundColor: Colors.black87);
     }
-  }
-
-  void logout() {
-    const flutterStorage = FlutterSecureStorage();
-    flutterStorage.delete(key: 'refreshToken');
-
-    Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
   }
 }

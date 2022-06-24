@@ -48,6 +48,7 @@ dependencies:
   qr_flutter: ^4.0.0
   ticket_widget: ^0.0.1
   dotted_line: ^3.1.0
+  money_formatter: ^0.0.3
 
 dev_dependencies:
   flutter_test:

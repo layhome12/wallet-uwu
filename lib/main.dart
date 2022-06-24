@@ -10,10 +10,13 @@ import 'package:wallet_uwu/pages/login/login_page.dart';
 import 'package:wallet_uwu/pages/providertest.dart';
 import 'package:wallet_uwu/pages/register/registration_page.dart';
 import 'package:wallet_uwu/pages/register/verification_page.dart';
+import 'package:wallet_uwu/pages/top_up/success_page.dart';
+import 'package:wallet_uwu/pages/top_up/top_up_local.dart';
 import 'package:wallet_uwu/pages/wallet/qrcode_page.dart';
 import 'package:wallet_uwu/pages/wallet/success_page.dart';
 import 'package:wallet_uwu/pages/wallet/transfer_page.dart';
 import 'package:wallet_uwu/provider/access_token.dart';
+import 'package:wallet_uwu/provider/wallet_ammount.dart';
 
 import 'pages/splash_screen.dart';
 
@@ -44,7 +47,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => AccessTokenProvider())
+        ChangeNotifierProvider(create: (context) => AccessTokenProvider()),
+        ChangeNotifierProvider(create: (context) => WalletAmmountProvider())
       ],
       child: MaterialApp(
         title: 'Kantongku',
@@ -69,6 +73,10 @@ class MyApp extends StatelessWidget {
           '/transfer': (context) => const TransferPage(),
           '/qr_code': (context) => QRCodePage(),
           '/success_transfer': (context) => const SuccessPage(),
+
+          //==> Route Top Up
+          '/topup_local': (context) => const TopUpLocalPage(),
+          '/topup_success': (context) => const SuccessTopUpPage(),
 
           // ==> Route Dummy
           '/provider': (context) => ProviderTest(),

@@ -5,7 +5,7 @@ import 'package:wallet_uwu/models/auth_model.dart';
 import 'package:wallet_uwu/models/response_server.dart';
 
 class AuthApi {
-  final baseUrl = 'http://192.168.0.2:8081/api/';
+  final baseUrl = 'http://192.168.2.4:8081/api/';
   final _storageCookie = const FlutterSecureStorage();
 
   Future authLogin(String username, String password) async {

@@ -4,7 +4,7 @@ import 'package:wallet_uwu/models/response_server.dart';
 import '../models/register_model.dart';
 
 class RegisterApi {
-  final baseUrl = "http://192.168.0.2:8081/api/";
+  final baseUrl = "http://192.168.2.4:8081/api/";
 
   Future registerSave(String firstName, String lastName, String username,
       String email, String phoneNumber, String password) async {
@@ -41,5 +41,15 @@ class RegisterApi {
         .timeout(const Duration(seconds: 5));
 
     return ResponseServer.fromJson(jsonDecode(response.body));
+  }
+
+  Future getDetailUser(String bearer) async {
+    final response = await http
+        .get(Uri.parse(baseUrl + "user/detail"), headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+      'Authorization': 'Bearer ' + bearer
+    }).timeout(const Duration(seconds: 5));
+
+    return json.decode(response.body);
   }
 }
